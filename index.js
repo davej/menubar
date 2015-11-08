@@ -125,9 +125,12 @@ module.exports = function create (opts) {
 
     function hideWindow () {
       if (!menubar.window) return
+      if (!menubar.window.isVisible()) return
       menubar.emit('hide')
-      menubar.window.hide()
-      menubar.emit('after-hide')
+      setTimeout(function() {
+        menubar.window.hide()
+        menubar.emit('after-hide')
+      }, 50)
     }
   }
 }
