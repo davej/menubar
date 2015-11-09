@@ -98,13 +98,20 @@ module.exports = function create (opts) {
       menubar.window.loadUrl(opts.index)
       menubar.emit('after-create-window')
     }
-
+    
+    var boundsCache = null;
     function showWindow (trayPos) {
       if (!menubar.window) {
         createWindow()
       }
 
       menubar.emit('show')
+
+      if (trayPos && trayPos.x != 0) {
+        boundsCache = trayPos
+      } else if (boundsCache) {
+        trayPos = boundsCache
+      }
 
       // Default the window to the right if `trayPos` bounds are undefined or null.
       var noBoundsPosition = null
