@@ -135,7 +135,7 @@ module.exports = function create (opts) {
       setTimeout(function () {
         menubar.window.hide()
         menubar.emit('after-hide')
-      }, 50)
+      }, 100)
     }
   }
 }
